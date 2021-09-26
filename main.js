@@ -33,7 +33,7 @@ renderer.render(scene, camera);
 // const roughnessMipmapper = new RoughnessMipmapper(renderer);
 
 const loader = new GLTFLoader();
-loader.load('./models/final.glb', function (glb) {
+loader.load('models/final.glb', function (glb) {
 
     const root = glb.scene;
     root.scale.set(1.8,1.8,1.8)
