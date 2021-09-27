@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/dist/',
+  base: '/threejs_scene/',
   build: {
     chunkSizeWarningLimit:1500,
     rollupOptions: {
