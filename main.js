@@ -14,11 +14,13 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
+    antialias: true,
 });
+
 
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.ACESFilmicToneMapping
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -60,10 +62,18 @@ pointLight.position.set(12, 12, 12);
 pointLight.castShadow = true;
 pointLight.shadow.bias = -0.001
 
+
 const pointLightTwo = new THREE.PointLight(0xffffff, 1);
 pointLightTwo.position.set(12, 12 , -12);
 pointLightTwo.castShadow = true;
 pointLightTwo.shadow.bias = -0.001
+
+if(window.innerWidth > 768){
+    pointLight.shadow.mapSize.width = 1024;
+    pointLight.shadow.mapSize.height = 1024;
+    pointLightTwo.shadow.mapSize.width = 1024;
+    pointLightTwo.shadow.mapSize.height = 1024;
+};
 
 const ambientLight = new THREE.AmbientLight(0xfeff9e, 1);
 
@@ -78,6 +88,8 @@ scene.add(pointLight,pointLightTwo,ambientLight);
 // scene.add(lightHelper, lightHelperTwo)
 
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.minDistance = 12;
+controls.maxDistance = 25;
 
 
 
